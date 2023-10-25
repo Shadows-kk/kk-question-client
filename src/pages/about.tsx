@@ -1,6 +1,5 @@
 import Head from "next/head";
-import QuestionInput from "@/componnets/QuestionComponents/QuestionInput";
-import QuestionRadio from "@/componnets/QuestionComponents/QuestionRadio";
+
 type PropsType = {
   info: string;
 };
@@ -15,24 +14,6 @@ export default function About(props: PropsType) {
       </Head>
       <main>
         <h4>{props.info}</h4>
-        <form>
-          <QuestionInput
-            fe_id="123123"
-            props={{ title: "你的姓名", placeholder: "请输入姓名" }}
-          />
-          <QuestionRadio
-            fe_id="123ew23"
-            props={{
-              title: "姓名",
-              options: [
-                { value: "1", text: "1" },
-                { value: "2", text: "2" },
-              ],
-              value: "1",
-              isVertical: false,
-            }}
-          />
-        </form>
       </main>
     </>
   );
@@ -49,7 +30,7 @@ export async function getServerSideProps() {
   console.log("每次请求都会执行");
   return {
     props: {
-      info: "请求的数据 1",
+      info: "请求的数据1",
     },
   };
 }
