@@ -11,7 +11,7 @@ const QuestionInput: React.FC<PropsType> = ({ fe_id, props }) => {
   const { title, placeholder = "" } = props;
   return (
     <>
-      <p>{title}</p>
+      <p className={style.title}>{title}</p>
       <div className={style.inputWrapper}>
         <input name={fe_id} placeholder={placeholder}></input>
       </div>

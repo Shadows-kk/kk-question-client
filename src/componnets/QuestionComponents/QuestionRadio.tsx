@@ -13,7 +13,7 @@ type PropsType = {
   };
 };
 const QuestionRadio: React.FC<PropsType> = ({ fe_id, props }) => {
-  const { title, options, value, isVertical } = props;
+  const { title, options, value, isVertical } = props || {};
   let liClassName = "";
   if (isVertical) {
     liClassName = style.verticalItem;
@@ -22,7 +22,7 @@ const QuestionRadio: React.FC<PropsType> = ({ fe_id, props }) => {
   }
   return (
     <>
-      <p>{title}</p>
+      <p className={style.title}>{title}</p>
       <ul className={style.list}>
         {options.map((item) => {
           const { value: val, text } = item;
