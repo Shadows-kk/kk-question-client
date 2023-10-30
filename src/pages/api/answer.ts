@@ -25,7 +25,9 @@ export default async function handler(
     res.status(200).json({ errorno: -1, msg: "提交方式不正确" });
   } else {
     const answerInfo = genAnswerInfo(req.body);
-
+    console.log(
+      answerInfo
+    );
     try {
       // 提交数据到服务端
       const resultData = await postAnswer(answerInfo);

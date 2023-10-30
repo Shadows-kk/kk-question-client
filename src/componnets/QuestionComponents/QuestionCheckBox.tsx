@@ -15,18 +15,6 @@ type PropsType = {
 const QuestionCheckBox: React.FC<PropsType> = ({ fe_id, props }) => {
   const { title, list = [], isVertical = false } = props;
   const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
-  const toogleChecked = (value: string) => {
-    console.log(value);
-    // 点击已选中的数据，取消选中
-    if (selectedValues.includes(value)) {
-      console.log("已选中", value);
-      setSelectedValues(selectedValues.filter((item) => item !== value));
-    } else {
-      console.log("未选中", value);
-      // 点击未选中，则添加选中
-      setSelectedValues(selectedValues.concat(value));
-    }
-  };
   useEffect(() => {
     list.forEach((item) => {
       const { value, checked } = item;
@@ -35,9 +23,23 @@ const QuestionCheckBox: React.FC<PropsType> = ({ fe_id, props }) => {
       }
     });
   }, [list]);
+  const toogleChecked = (value: string) => {
+    console.log(value);
+    // 点击已选中的数据，取消选中
+    if (selectedValues.includes(value)) {
+      setSelectedValues((selectedValues) =>
+        selectedValues.filter((item) => item !== value)
+      );
+    } else {
+      // 点击未选中，则添加选中
+      setSelectedValues(selectedValues.concat(value));
+    }
+  };
+
   return (
     <>
       <p className={style.title}>{title}</p>
+      <input type="hidden" name={fe_id} value={selectedValues.toString()} />
       <ul className={style.list}>
         {list.map((item) => {
           const { value, text, checked } = item;
@@ -53,7 +55,7 @@ const QuestionCheckBox: React.FC<PropsType> = ({ fe_id, props }) => {
                 <input
                   type="checkbox"
                   checked={selectedValues.includes(value)}
-                  onChange={()=>toogleChecked(value)}
+                  onChange={() => toogleChecked(value)}
                 />
                 {text}
               </label>
